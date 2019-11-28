@@ -55,7 +55,7 @@ void acessaAmbiente(int aux) {
     }
 }
 
-void adicionarAmbiente() {
+void adicionarAmbiente() {  //loop infinito
     char nome[20];
     for (int i = 0; i < MAX_AMB; i++) {
         if (ambientes[i].id==0){
