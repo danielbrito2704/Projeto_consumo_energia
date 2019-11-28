@@ -57,32 +57,57 @@ void acessaAmbiente(int aux) {
 
 void adicionarAmbiente() {  //loop infinito
     char nome[20];
+    int x;
     for (int i = 0; i < MAX_AMB; i++) {
-        if (ambientes[i].id==0){
-        ambientes[i].id=i+1;
-        printf("Insira o nome do ambiente: ");
-        scanf("% [^/n]s",nome);
-        strcpy(ambientes[i].nome,nome);
-        printf("Insira quantas horas a sala fica ativa:");
-        scanf("%f",&ambientes[i].uso);
-        printf("Insira quantas horas a sala fica inativa:");
-        scanf("%f",&ambientes[i].stand);
-
+        if (ambientes[i].id == 0) {
+            ambientes[i].id = i + 1;
+            printf("Insira o nome do ambiente: ");
+            scanf(" %[^\n]s", nome);
+            strcpy(ambientes[i].nome, nome);
+            printf("Insira quantas horas a sala fica ativa:");
+            scanf("%f", &ambientes[i].uso);
+            printf("Insira quantas horas a sala fica inativa:");
+            scanf("%f", &ambientes[i].stand);
+            printf("Deseja adicionar mais ambientes?\n");
+            printf("1 - Sim\n");
+            printf("2 - Não\n");
+            printf("->");
+            scanf("%d",&x);
+            if (x == 2)
+                i = MAX_AMB;
         }
     }
 }
 
-int menuAmbientes() {
-    int i = 0, escolha = 10;
-    while (escolha >= 3 || escolha <= 0) {
+void menuAmbientes() {
+    int x = 1;
+    while (x) {
+        int escolha;
         printf("1 - Adicionar\n");
         printf("2 - Editar\n");
         printf("3 - Excluir\n");
         printf("4 - Voltar\n");
         printf("Escolha uma das opções acima: ");
         scanf("%d", &escolha);
+
+        switch (escolha) {
+            case 1:
+                adicionarAmbiente();
+                break;
+            case 2:
+                //editarAmbiente();
+                break;
+            case 3:
+                //1  removerAmbiente();
+                break;
+            case 4:
+                x=0;
+                break;
+            default:
+                printf("Escolha não existe");
+                break;
+        }
     }
-    return escolha;
 }
 
 
@@ -94,53 +119,35 @@ int main() {
         scanf("%f", &taxa);
     }
 
-
-    while (menu != 4) {
-
+    int x = 1;
+    while (x) {
         printf("1 - Consumo Total\n");
         printf("2 - Ambientes\n");
         printf("3 - Equipamentos\n");
-        printf("4- Sair");
+        printf("4 - Sair");
         printf("\nEscolha a opção desejada\n");
         scanf("%d", &menu);
-        int x;
+
         switch (menu) {
             case 1:
                 consumo();
                 break;
             case 2:
-                x = menuAmbientes();
-                switch (x) {
-                    case 1:
-                        adicionarAmbiente();
-                        break;
-                    case 2:
-                        editarAmbiente();
-                        break;
-                    case 3:
-                        removerAmbiente();
-                        break;
-                    case 4:
-                        break;
-                    default:
-                        printf("Escolha não existe");
-                        break;
-                }
-
+                menuAmbientes();
                 break;
             case 3:
                 printf("Adicionar equipamentos\n");
                 break;
-
-                break;
             case 4:
                 printf("Saindo");
-
+                x = 0;
+                break;
             default:
                 printf("Opção Inválida\n");
+                break;
         }
 
-        printf("Semanal %.2fR$", (ambientes[0].consumo) * 7);
+        //printf("Semanal %.2fR$", (ambientes[0].consumo) * 7);
 
     }
 }
