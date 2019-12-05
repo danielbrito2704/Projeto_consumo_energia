@@ -429,7 +429,7 @@ void menuEquipamentos() {
     }
 }
 
-void menuzin() {
+void menuzin() {        //menu inicial
     int menu;
     int x = 1;
     while (x) {
