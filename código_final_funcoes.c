@@ -16,10 +16,10 @@ void taxad() {
     menuzin();
 }
 
-int verificadados(char *us, char *pas) { /* retorno da funçao se o usuário for incorreto é 1*/
+int verificadados(char *login, char *senha) { /* retorno da funçao se o usuário for incorreto é 1*/
 
     for (int i = 0; i < MAX_USER; i++) {
-        if (strcmp(us, dados[i].usuario) == 0 && strcmp(pas, dados[i].senha) == 0) {
+        if (strcmp(login, dados[i].usuario) == 0 && strcmp(senha, dados[i].senha) == 0) {
             return 0;
         }
     }
